@@ -35,6 +35,10 @@ const invoiceNumberDOM = document.getElementById("invoiceNumber");
 const cuitDOM = document.getElementById("cuit");
 
 const shippingSelect = document.getElementById("shippingMethod");
+const paymentSelect = document.getElementById("paymentMethod");
+const cardFields = document.getElementById("cardFields");
+const qrSection = document.getElementById("qrSection");
+const btnConfirmQR = document.getElementById("btnConfirmQR");
 const couponInput = document.getElementById("couponInput");
 const applyCouponBtn = document.getElementById("applyCoupon");
 
@@ -60,6 +64,8 @@ let carrito = storageGetJSON(CART_KEY, []);
 const COUPON_PROMPT_KEY = "irbis_coupon_prompted";
 
 let descuentoCupon = 0;
+let ajustePago = 0; // positivo = recargo, negativo = descuento
+let qrConfirmado = false;
 let cuponAplicado = false;
 const IVA_RATE = 0.21;
 const DESCUENTO_PERMANENTE = 0.30; // 30% fijo siempre
@@ -276,13 +282,15 @@ function calcularResumen() {
   const baseImponible = subtotal - descuentoTotal;
   const iva = baseImponible * IVA_RATE;
 
-  const total = baseImponible + iva + envio;
+  const totalAntesPago = baseImponible + iva + envio;
+  const total = totalAntesPago + (totalAntesPago * ajustePago);
 
   return {
     subtotal,
     descuento: descuentoTotal,
     iva,
     envio,
+    ajustePago: totalAntesPago * ajustePago,
     total
   };
 }
@@ -919,6 +927,10 @@ function abrirVentanaFactura(order) {
 // ===============================
 btnCheckout?.addEventListener("click", () => {
   if (!carrito.length) return alertaError("Agregá productos antes de finalizar la compra.");
+  if (paymentSelect?.value === "qr" && !qrConfirmado) {
+  return alertaError("Confirmá el pago QR antes de continuar.");
+}
+
 
   const openCheckout = () => {
     const resumen = calcularResumen();
@@ -1123,6 +1135,51 @@ document.addEventListener("click", (e) => {
 // ===============================
 shippingSelect?.addEventListener("change", () => {
   renderCarrito();
+});
+
+// ===============================
+// EVENTO MÉTODO DE PAGO
+// ===============================
+
+paymentSelect?.addEventListener("change", () => {
+
+  const metodo = paymentSelect.value;
+
+  ajustePago = 0;
+  qrConfirmado = false;
+
+  cardFields?.classList.add("hidden");
+  qrSection?.classList.add("hidden");
+
+  if (metodo === "tarjeta") {
+    ajustePago = 0.10; // +10%
+    cardFields?.classList.remove("hidden");
+  }
+
+  if (metodo === "efectivo") {
+    ajustePago = -0.05; // -5%
+  }
+
+  if (metodo === "qr") {
+    qrSection?.classList.remove("hidden");
+    btnCheckout.disabled = true;
+  }
+
+  renderCarrito();
+});
+
+btnConfirmQR?.addEventListener("click", () => {
+  qrConfirmado = true;
+  btnCheckout.disabled = false;
+
+  Swal.fire({
+    title: "Pago QR confirmado",
+    icon: "success",
+    background: "#1e1e1e",
+    color: "#fff",
+    timer: 1200,
+    showConfirmButton: false
+  });
 });
 
 // ===============================
