@@ -1,0 +1,17 @@
+{
+  "name": "irbis-supplies",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "coffeescript": "^2.7.0",
+    "esbuild": "^0.20.2",
+    "firebase": "^10.13.0",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "nombre": "AIM 90",
+    "descripcion": "Rifle de francotirador con 10 rondas y alta estabilidad. Diseñado para precisión sostenida en largas distancias.",
+    "precioBase": 7800,
+    "imagen": "./images/product-one.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Oliva", "hex": "#808000" }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "AK Surorov SV7",
+    "descripcion": "Fusil de francotirador de 10 rondas con diseño robusto y excelente control en fuego semiautomático.",
+    "precioBase": 4800,
+    "imagen": "./images/product-two.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Dorado", "hex": "#d4af37" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "AK-102",
+    "descripcion": "Rifle de asalto compacto con 30 rondas. Alta maniobrabilidad y control.",
+    "precioBase": 4250,
+    "imagen": "./images/product-three.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Greige", "hex": "#b7a89e" },
+      { "nombre": "Oliva", "hex": "#808000" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Lila", "hex": "#b57edc" }
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "AK-R",
+    "descripcion": "Rifle de asalto de 30 rondas con alto poder de penetración y precisión mejorada.",
+    "precioBase": 4500,
+    "imagen": "./images/product-four.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Dorado", "hex": "#d4af37" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Broughton M2000-D",
+    "descripcion": "Rifle de francotirador de largo alcance con cargador de 5 rondas. Diseñado para precisión extrema y estabilidad balística en disparos de alta distancia.",
+    "precioBase": 4200,
+    "imagen": "./images/product-five.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Lila", "hex": "#b57edc" }
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Carnage",
+    "descripcion": "Escopeta pesada de 10 rondas con potencia elevada y gran impacto en corto alcance.",
+    "precioBase": 7500,
+    "imagen": "./images/product-six.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Amarillo", "hex": "#ffd700" },
+      { "nombre": "Rojo", "hex": "#ff0000" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Verde", "hex": "#008000" }
+    ]
+  },
+  {
+    "id": 7,
+    "nombre": "CG PS12G",
+    "descripcion": "Escopeta táctica con capacidad de 5 rondas. Ideal para control de corto alcance.",
+    "precioBase": 6000,
+    "imagen": "./images/product-seven.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "CN/ST-23",
+    "descripcion": "Escopeta táctica con 20 rondas. Equilibrio entre alcance corto y estabilidad.",
+    "precioBase": 6000,
+    "imagen": "./images/product-eight.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 9,
+    "nombre": "Corvo CAR-4",
+    "descripcion": "Carabina táctica con cargador de 20 rondas. Balance óptimo entre potencia y precisión en distancias medias.",
+    "precioBase": 4000,
+    "imagen": "./images/product-nine.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Greige", "hex": "#b7a89e" }
+    ]
+  },
+  {
+    "id": 10,
+    "nombre": "Corvo DS6",
+    "descripcion": "Revólver de acción simple con 5 rondas. Diseño clásico combinado con potencia concentrada.",
+    "precioBase": 2500,
+    "imagen": "./images/product-ten.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Púrpura", "hex": "#800080" }
+    ]
+  },
+  {
+    "id": 11,
+    "nombre": "Eaton Modelo 8",
+    "descripcion": "Rifle de precisión con 10 rondas y sistema de estabilización reforzado.",
+    "precioBase": 3000,
+    "imagen": "./images/product-eleven.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Greige", "hex": "#b7a89e" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Oliva", "hex": "#808000" }
+    ]
+  },
+  {
+    "id": 12,
+    "nombre": "Ferino SP-14",
+    "descripcion": "Escopeta de 10 rondas con diseño ergonómico y potencia controlada.",
+    "precioBase": 4000,
+    "imagen": "./images/product-twelve.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Greige", "hex": "#b7a89e" }
+    ]
+  },
+  {
+    "id": 13,
+    "nombre": "Five-Seven Tactical",
+    "descripcion": "Pistola Five-Seven con kit conversor y cargador de 20 rondas. Configuración versátil orientada a precisión y control.",
+    "precioBase": 8000,
+    "imagen": "./images/product-thirteen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Verde Musgo", "hex": "#556b2f" }
+    ]
+  },
+  {
+    "id": 14,
+    "nombre": "FN P90",
+    "descripcion": "Subfusil compacto con capacidad de 50 rondas y alta cadencia de disparo. Diseñado para operaciones tácticas en espacios reducidos.",
+    "precioBase": 7800,
+    "imagen": "./images/product-fourteen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Turquesa", "hex": "#40e0d0" },
+      { "nombre": "Rosa", "hex": "#ff69b4" }
+    ]
+  },
+  {
+    "id": 15,
+    "nombre": "Glock 25 Radetec",
+    "descripcion": "Pistola semiautomática compacta con visor digital integrado y cargador de 10 rondas. Ideal para defensa táctica y uso urbano.",
+    "precioBase": 10000,
+    "imagen": "./images/product-fifteen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Naranja", "hex": "#ff7f00" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 16,
+    "nombre": "HJKE-11 Yukimura",
+    "descripcion": "Pistola táctica avanzada de 30 rondas. Alto rendimiento y diseño futurista.",
+    "precioBase": 25000,
+    "imagen": "./images/product-sixteen.png",
+    "colores": [
+      { "nombre": "Dorado", "hex": "#d4af37" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Verde", "hex": "#008000" },
+      { "nombre": "Púrpura", "hex": "#800080" },
+      { "nombre": "Blanco", "hex": "#ffffff" }
+    ]
+  },
+  {
+    "id": 17,
+    "nombre": "Lockwood 680",
+    "descripcion": "Escopeta compacta de 7 rondas con gran impacto en corto alcance.",
+    "precioBase": 5000,
+    "imagen": "./images/product-seventeen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Oliva", "hex": "#808000" },
+      { "nombre": "Greige", "hex": "#b7a89e" }
+    ]
+  },
+  {
+    "id": 18,
+    "nombre": "M2038",
+    "descripcion": "Escopeta táctica de 10 rondas con potencia superior y diseño reforzado.",
+    "precioBase": 8000,
+    "imagen": "./images/product-eighteen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Greige", "hex": "#b7a89e" },
+      { "nombre": "Oliva", "hex": "#808000" },
+      { "nombre": "Dorado", "hex": "#d4af37" }
+    ]
+  },
+  {
+    "id": 19,
+    "nombre": "M21",
+    "descripcion": "Rifle de francotirador camuflado con 10 rondas y alta precisión en terreno abierto.",
+    "precioBase": 7800,
+    "imagen": "./images/product-nineteen.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Verde Musgo", "hex": "#556b2f" }
+    ]
+  },
+  {
+    "id": 20,
+    "nombre": "SA M308",
+    "descripcion": "Fusil de tirador con 10 rondas y excelente precisión en distancias medias.",
+    "precioBase": 7200,
+    "imagen": "./images/product-twenty.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Greige", "hex": "#b7a89e" }
+    ]
+  },
+  {
+    "id": 21,
+    "nombre": "SG Compact-5",
+    "descripcion": "Subfusil ligero de 20 rondas, diseñado para alta movilidad y control en escenarios tácticos urbanos.",
+    "precioBase": 4000,
+    "imagen": "./images/product-twenty-one.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  },
+  {
+    "id": 22,
+    "nombre": "Swordfish",
+    "descripcion": "Rifle bullup táctico con sistema pentaburst y capacidad de 50 rondas. Ideal para fuego controlado de alta intensidad.",
+    "precioBase": 5500,
+    "imagen": "./images/product-twenty-two.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Marrón", "hex": "#8b4513" },
+      { "nombre": "Verde Musgo", "hex": "#556b2f" }
+    ]
+  },
+  {
+    "id": 23,
+    "nombre": "TAQ-VF 7S",
+    "descripcion": "Rifle de asalto con cargador de 30 rondas. Alta precisión y estabilidad para operaciones tácticas prolongadas.",
+    "precioBase": 5250,
+    "imagen": "./images/product-twenty-three.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Verde Musgo", "hex": "#556b2f" }
+    ]
+  },
+  {
+    "id": 24,
+    "nombre": "Tavor X95",
+    "descripcion": "Rifle bullpup de 30 rondas con diseño compacto y precisión mejorada.",
+    "precioBase": 4250,
+    "imagen": "./images/product-twenty-four.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Oliva", "hex": "#808000" },
+      { "nombre": "Greige", "hex": "#b7a89e" }
+    ]
+  },
+  {
+    "id": 25,
+    "nombre": "TKA Cobra",
+    "descripcion": "Subfusil compacto con 20 rondas y estructura reforzada. Excelente rendimiento en combate cercano.",
+    "precioBase": 3600,
+    "imagen": "./images/product-twenty-five.png",
+    "colores": [
+      { "nombre": "Negro", "hex": "#000000" },
+      { "nombre": "Gris", "hex": "#808080" },
+      { "nombre": "Blanco", "hex": "#ffffff" },
+      { "nombre": "Ocre", "hex": "#c2a34a" },
+      { "nombre": "Marrón", "hex": "#8b4513" }
+    ]
+  }
+]

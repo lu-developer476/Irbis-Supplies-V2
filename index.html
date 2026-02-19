@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Irbis Supplies | Tienda Oficial</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css"/>
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+  <!-- ===============================
+       HERO COMPLETO
+  =============================== -->
+  <section class="hero">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <div class="logo">
+          <img src="./images/logo.png" alt="Irbis Supplies Logo" />
+        </div>
+
+        <div class="auth-actions">
+          <button id="btnLogin" class="btn-secondary">Iniciar sesión</button>
+          <button id="btnRegister" class="btn-primary">Registrarse</button>
+          <span id="authBadge" class="auth-badge" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#productos" class="btn-secondary">📦</a></li>
+          <li><button id="btnCart" class="btn-secondary" type="button" aria-haspopup="dialog" aria-controls="cartDrawer">🛒</button></li>
+          <li>
+            <button id="btnHistorial" class="btn-secondary">📄Historial</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- SWIPER -->
+    <div class="hero-content">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Antes que llegue el final...</div>
+          <div class="swiper-slide">asegurate de contar con lo necesario para sobrevivir.</div>
+          <div class="swiper-slide">El momento de prepararse no es cuando ya empezó...</div>
+          <div class="swiper-slide">Prevenir siempre costará menos que improvisar.</div>
+          <div class="swiper-slide">Mantente listo para lo que suceda después.</div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===============================
+       CONTENIDO PRINCIPAL
+  =============================== -->
+  <main>
+
+    <section id="productos" class="productos">
+      <h2>Catálogo</h2>
+      <div id="productosContainer" class="grid-productos"></div>
+    </section>
+
+    <section id="carrito" class="carrito">
+      <h2>Carrito</h2>
+      <p style="text-align:center; opacity:0.85; margin:0;">El carrito ahora vive en un panel deslizable a la derecha. Tocá <strong>🛒</strong> arriba para abrirlo.</p>
+    </section>
+
+  </main>
+
+  <!-- ===============================
+       CART DRAWER (panel derecho)
+  =============================== -->
+  <div id="cartOverlay" class="cart-overlay" aria-hidden="true"></div>
+  <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrito">
+    <div class="cart-drawer__header">
+      <h3>Carrito</h3>
+      <button id="btnCloseCart" class="btn-secondary" type="button" aria-label="Cerrar carrito">✕</button>
+    </div>
+
+    <div class="cart-drawer__body">
+      <div class="carrito-wrapper">
+        <div class="cart-items-scroll">
+          <div id="carritoContainer"></div>
+        </div>
+
+        <div class="carrito-sidebar">
+          <div class="invoice-box">
+
+            <div class="invoice-info">
+              <p><strong>Datos fiscales</strong></p>
+              <p>CUIT: <span id="cuit">30-12345678-9</span></p>
+              <p>IVA: Responsable Inscripto</p>
+            </div>
+
+            <div class="shipping-method">
+              <label for="shippingMethod">Forma de envío:</label>
+              <select id="shippingMethod">
+                <option value="0">Retiro en punto de encuentro - Gratis</option>
+                <option value="5000">Courier - $5.000.-</option>
+                <option value="0">Express - a convenir</option>
+              </select>
+            </div>
+
+            <div class="coupon-box">
+              <input type="text" id="couponInput" placeholder="Código de cupón" />
+              <button id="applyCoupon" class="btn-secondary">Aplicar</button>
+            </div>
+
+            <p style="font-size: 0.9rem; opacity: 0.7; margin-top:10px;">
+              *Todos los precios incluyen un 30% de descuento permanente.
+            </p>
+
+            <div class="summary-breakdown">
+              <p>Subtotal: <span id="subtotal">$0</span></p>
+              <p>Descuento: <span id="discount">$0</span></p>
+              <p>IVA (21%): <span id="iva">$0</span></p>
+              <p>Envío: <span id="shippingCost">$0</span></p>
+              <hr>
+            </div>
+
+            <div class="carrito-footer">
+              <p>Total: <span id="totalCarrito">$0</span></p>
+
+              <div class="carrito-actions">
+                <button id="vaciarCarrito" class="btn-secondary">Vaciar Carrito</button>
+                <button id="btnCheckout" class="btn-primary">Finalizar Compra</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===============================
+       FOOTER
+  =============================== -->
+  <footer>
+    <p>© 2026 Todos los derechos reservados | Lucas Leonel Montenegro Burgos</p>
+  </footer>
+
+
+  <!-- ===============================
+       SCRIPTS
+  =============================== -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+
+  <!-- Firebase config (editable) -->
+  <script src="./firebase-config.js"></script>
+  <script type="module" src="./assets/app.js"></script>
+
+  <form name="orden-compra" method="POST" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="orden-compra" />
+    <input type="text" name="nombre" />
+    <input type="email" name="email" />
+    <input type="text" name="detalle" />
+    <input type="number" name="total" />
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+</body>
+</html>
