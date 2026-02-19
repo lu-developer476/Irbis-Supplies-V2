@@ -939,7 +939,7 @@ function abrirVentanaFactura(order) {
         ${invoiceHTML(order)}
 
         <script>
-          const payload = ${JSON.stringify(qrPayload)};
+          const payload = ${qrPayload};
           new QRCode(document.getElementById("qr"), {
             text: payload,
             width: 140,
