@@ -273,27 +273,23 @@ function calcularResumen() {
 
   // 30% permanente
   const descuentoBase = subtotal * DESCUENTO_PERMANENTE;
-
   // Cupón adicional
   const descuentoExtra = subtotal * descuentoCupon;
-
   const descuentoTotal = descuentoBase + descuentoExtra;
-
   const baseImponible = subtotal - descuentoTotal;
   const iva = baseImponible * IVA_RATE;
-
   const totalAntesPago = baseImponible + iva + envio;
   const total = totalAntesPago + (totalAntesPago * ajustePago);
 
   return {
     subtotal,
-    descuento: descuentoTotal,
+    descuentoBase,
+    descuentoExtra,
     iva,
     envio,
-    ajustePago: totalAntesPago * ajustePago,
+    ajusteMonto: totalAntesPago * ajustePago,
     total
   };
-}
 
 function maskCard(num) {
   const clean = String(num || "").replace(/\s+/g, "");
@@ -500,9 +496,32 @@ function renderCarrito() {
   });
 
   const resumen = calcularResumen();
+  
+  if (paymentSelect) {
+  const metodo = paymentSelect.value;
+
+  if (!metodo) {
+    console.log("Ajuste: -----");
+  } else if (resumen.ajusteMonto !== 0) {
+    console.log(
+      resumen.ajusteMonto > 0
+        ? `Recargo tarjeta: + ${currency(resumen.ajusteMonto)}`
+        : `Descuento efectivo: - ${currency(Math.abs(resumen.ajusteMonto))}`
+    );
+  }
+}
 
   if (subtotalDOM) subtotalDOM.innerText = currency(resumen.subtotal);
-  if (discountDOM) discountDOM.innerText = currency(resumen.descuento);
+  if (discountDOM) {
+    let texto = `- ${currency(resumen.descuentoBase)}`;
+  
+    if (resumen.descuentoExtra > 0) {
+      texto += `  |  Cupón: - ${currency(resumen.descuentoExtra)}`;
+    }
+  
+    discountDOM.innerText = texto;
+  }
+  
   if (ivaDOM) ivaDOM.innerText = currency(resumen.iva);
   if (shippingCostDOM) shippingCostDOM.innerText = currency(resumen.envio);
   
@@ -714,14 +733,14 @@ function invoiceHTML(order) {
   
   const baseImponible = subtotalBruto - descuentoTotal;
   const iva = baseImponible * IVA_RATE;
-  
+
+  // envío estimado (si lo querés mostrar correctamente después)
+  const envio = order.envio || 0; // si querés mantenerlo simple por ahora
+
   // reconstruimos el total antes del ajuste
   const totalAntesPago = baseImponible + iva;
   const ajusteMonto = totalAntesPago * order.ajustePago;
-  
-  // envío estimado (si lo querés mostrar correctamente después)
-  const envio = order.envio || 0; // si querés mantenerlo simple por ahora
-  
+    
   // En el PDF usamos el total guardado en la orden
   const totalFinal = order.total;
 
@@ -1067,7 +1086,7 @@ btnCheckout?.addEventListener("click", () => {
 
       Swal.fire({
         title: "Compra confirmada",
-        text: "Se generó tu factura. Podés imprimirla o descargarla en PDF.",
+        text: "Se generó tu comprobante de pago. Podés imprimirla y/o descargarla en PDF.",
         icon: "success",
         background: "#1e1e1e",
         color: "#fff"
@@ -1088,13 +1107,13 @@ btnCheckout?.addEventListener("click", () => {
   `).join("");
 
   Swal.fire({
-    title: "¿Sumás accesorios?",
+    title: "¿Querés llevar éstos accesorios?",
     html: `
       <div style="max-height:320px; overflow:auto; padding-right:6px;">
         ${addonsHtml}
       </div>
       <p style="font-size:0.9rem; opacity:0.75; text-align:left; margin:10px 0 0;">
-        Esto es opcional. Si no querés, seguí directo al checkout.
+        Antes de avanzar, revisá tu carrito.
       </p>
     `,
     showCancelButton: true,
@@ -1132,7 +1151,7 @@ btnVaciarCarrito?.addEventListener("click", () => {
 
   if (!carrito.length) {
     Swal.fire({
-      title: "El carrito ya está vacío",
+      title: "El carrito no posee artículos",
       icon: "info",
       background: "#1e1e1e",
       color: "#fff",
@@ -1147,7 +1166,7 @@ btnVaciarCarrito?.addEventListener("click", () => {
   renderCarrito();
 
   Swal.fire({
-    title: "Carrito vaciado",
+    title: "Carrito limpiado",
     icon: "success",
     background: "#1e1e1e",
     color: "#fff",
@@ -1211,7 +1230,24 @@ paymentSelect?.addEventListener("change", () => {
   if (metodo === "qr") {
     qrSection?.classList.remove("hidden");
     btnCheckout.disabled = true;
-  }
+  
+    const qrContainer = document.getElementById("qrContainer");
+    qrContainer.innerHTML = "";
+  
+    const resumen = calcularResumen();
+  
+    const ahora = new Date().toLocaleString("es-AR", { hour12: false });
+    
+    new QRCode(qrContainer, {
+      text: `
+    Irbis Supplies
+    Total: ${currency(resumen.total)}
+    Fecha: ${ahora}
+    Referencia: PRE-${Date.now()}
+      `,
+      width: 160,
+      height: 160
+    });
 
   renderCarrito();
 });
