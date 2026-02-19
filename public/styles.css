@@ -454,6 +454,30 @@ body {
 }
 
 /* ===============================
+   MEDIOS DE PAGO
+   =============================== */
+
+.payment-method {
+  margin-top: 12px;
+}
+
+.card-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.qr-section {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ===============================
    FOOTER
    =============================== */
 
