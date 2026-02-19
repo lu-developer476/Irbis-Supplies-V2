@@ -848,7 +848,28 @@ function abrirVentanaFactura(order) {
         <title>Factura ${order.orderId} - Irbis Supplies</title>
         <meta charset="UTF-8" />
         <style>
-          body { font-family: Arial, Helvetica, sans-serif; padding: 24px; background:#0f0f12; color:#eaeaea; }
+          html, body {
+            height: 100%;
+          }
+          
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 24px;
+            background:#0f0f12;
+            color:#eaeaea;
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .invoice {
+            background:#14141a;
+            border:1px solid #2a2a33;
+            border-radius:16px;
+            padding:18px;
+            display:flex;
+            flex-direction:column;
+            min-height: 100%;
+          }
           .actions { display:flex; gap:10px; margin-bottom:16px; }
           button { cursor:pointer; border:0; padding:10px 14px; border-radius:10px; font-weight:700; }
           .btn { background:#2b2b33; color:#fff; }
@@ -864,11 +885,25 @@ function abrirVentanaFactura(order) {
           .boxTitle { font-weight:800; margin-bottom:8px; color:#cfcfe6; }
           .qrBox { display:flex; flex-direction:column; align-items:center; text-align:center; }
           #qr { background:#fff; padding:10px; border-radius:10px; }
-          table { width:100%; border-collapse:collapse; margin-top:12px; }
+          table {
+            width:100%;
+            border-collapse:collapse;
+            margin-top:12px;
+            flex-grow: 1;
+          }
           th, td { padding:10px; border-bottom:1px solid #2a2a33; vertical-align:top; }
           th { color:#cfcfe6; text-align:left; font-size:13px; }
-          .totals { display:flex; justify-content:flex-end; margin-top:14px; }
+          .totals {
+            display:flex;
+            justify-content:flex-end;
+            margin-top:auto;
+          }
           .totalsBox { width: 320px; background:#101016; border:1px solid #2a2a33; border-radius:12px; padding:12px; }
+          .footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 12px;
+          }
           .row { display:flex; justify-content:space-between; padding:6px 0; }
           .grand { font-size:16px; font-weight:900; border-top:1px solid #2a2a33; margin-top:8px; padding-top:10px; }
           @media print {
