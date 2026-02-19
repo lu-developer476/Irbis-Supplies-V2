@@ -841,150 +841,79 @@ function generarNumeroFactura() {
   );
 }
 
+  // Inyectamos libs en la ventana para QR + PDF
 function abrirVentanaFactura(order) {
-  const facturaWindow = window.open('', '_blank');
+  const w = window.open("", "_blank");
 
-  if (!facturaWindow) {
-    alert("El navegador bloqueó la ventana emergente.");
+  if (!w) {
+    alertaError("El navegador bloqueó la ventana emergente. Permití pop-ups.");
     return;
   }
 
-  const contenido = invoiceHTML(order);
-
-  facturaWindow.document.open();
-  facturaWindow.document.write(contenido);
-  facturaWindow.document.close();
-}
-
-  const w = window.open("", "_blank");
-  if (!w) return alertaError("El navegador bloqueó la ventana emergente. Permití pop-ups para imprimir/descargar.");
-
-  // Inyectamos libs en la ventana para QR + PDF
   w.document.write(`
     <html>
       <head>
         <title>Factura ${order.orderId} - Irbis Supplies</title>
         <meta charset="UTF-8" />
-        <style>
-          html, body {
-            height: 100%;
-          }
-          
-          body {
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 24px;
-            background:#0f0f12;
-            color:#eaeaea;
-            display: flex;
-            flex-direction: column;
-          }
-          
-          .invoice {
-            background:#14141a;
-            border:1px solid #2a2a33;
-            border-radius:16px;
-            padding:18px;
-            display:flex;
-            flex-direction:column;
-            min-height: 100%;
-          }
-          .actions { display:flex; gap:10px; margin-bottom:16px; }
-          button { cursor:pointer; border:0; padding:10px 14px; border-radius:10px; font-weight:700; }
-          .btn { background:#2b2b33; color:#fff; }
-          .btnPrimary { background:#5b7cfa; color:#fff; }
-          .invoice { background:#14141a; border:1px solid #2a2a33; border-radius:16px; padding:18px; }
-          .top { display:flex; justify-content:space-between; gap:14px; border-bottom:1px solid #2a2a33; padding-bottom:12px; margin-bottom:12px; }
-          .brand { font-size:20px; font-weight:900; letter-spacing:1px; }
-          .muted { color:#a9a9b2; }
-          .small { font-size:12px; }
-          .meta { text-align:right; }
-          .grid { display:grid; grid-template-columns: 1.3fr 1fr 0.8fr; gap:12px; margin:12px 0; }
-          .box { background:#101016; border:1px solid #2a2a33; border-radius:12px; padding:12px; }
-          .boxTitle { font-weight:800; margin-bottom:8px; color:#cfcfe6; }
-          .qrBox { display:flex; flex-direction:column; align-items:center; text-align:center; }
-          #qr { background:#fff; padding:10px; border-radius:10px; }
-          table {
-            width:100%;
-            border-collapse:collapse;
-            margin-top:12px;
-            flex-grow: 1;
-          }
-          th, td { padding:10px; border-bottom:1px solid #2a2a33; vertical-align:top; }
-          th { color:#cfcfe6; text-align:left; font-size:13px; }
-          .totals {
-            display:flex;
-            justify-content:flex-end;
-            margin-top:auto;
-          }
-          .totalsBox { width: 320px; background:#101016; border:1px solid #2a2a33; border-radius:12px; padding:12px; }
-          .footer {
-            margin-top: auto;
-            text-align: center;
-            padding-top: 12px;
-          }
-          .row { display:flex; justify-content:space-between; padding:6px 0; }
-          .grand { font-size:16px; font-weight:900; border-top:1px solid #2a2a33; margin-top:8px; padding-top:10px; }
-          @media print {
-            body { background:#fff; color:#000; }
-            .actions { display:none; }
-            .invoice { border:0; }
-            #qr { border:1px solid #000; }
-          }
-        </style>
 
         <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
       </head>
 
-      <body>
-        <div class="actions">
-          <button class="btn" onclick="window.print()">Imprimir</button>
-          <button class="btnPrimary" onclick="downloadPDF()">Descargar PDF</button>
-        </div>
-
+      <body style="font-family:Arial; padding:20px;">
         ${invoiceHTML(order)}
 
         <script>
-          const payload = ${JSON.stringify(qrPayload)};
+          const payload = ${JSON.stringify({
+            orderId: order.orderId,
+            total: order.total,
+            date: order.date,
+            email: order.customer.email
+          })};
+
           new QRCode(document.getElementById("qr"), {
-            text: payload,
-            width: 140,
-            height: 140,
-            correctLevel: QRCode.CorrectLevel.M
+            text: JSON.stringify(payload),
+            width: 120,
+            height: 120
           });
+        </script>
+      </body>
+    </html>
+  `);
 
-          async function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const el = document.getElementById("invoice");
-          
-            const canvas = await html2canvas(el, { scale: 2 });
-            const imgData = canvas.toDataURL("image/png");
-          
-            const pdf = new jsPDF("p", "mm", "a4");
-          
-            const pageWidth = pdf.internal.pageSize.getWidth();
-            const pageHeight = pdf.internal.pageSize.getHeight();
-          
-            const imgWidth = pageWidth;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-          
-            let heightLeft = imgHeight;
-            let position = 0;
-          
-            pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-          
-            while (heightLeft > 0) {
-              position = heightLeft - imgHeight;
-              pdf.addPage();
-              pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-              heightLeft -= pageHeight;
-            }
-          
-            pdf.save("${order.orderId}.pdf");
-          }
+  w.document.close();
+}
 
+function abrirVentanaFactura(order) {
+  const w = window.open("", "_blank");
+
+  if (!w) {
+    alertaError("El navegador bloqueó la ventana emergente.");
+    return;
+  }
+
+  w.document.write(`
+    <html>
+      <head>
+        <title>Factura ${order.orderId} - Irbis Supplies</title>
+        <meta charset="UTF-8" />
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+      </head>
+      <body style="font-family:Arial; padding:20px;">
+        ${invoiceHTML(order)}
+
+        <script>
+          const payload = ${JSON.stringify({
+            orderId: order.orderId,
+            total: order.total,
+            date: order.date,
+            email: order.customer.email
+          })};
+
+          new QRCode(document.getElementById("qr"), {
+            text: JSON.stringify(payload),
+            width: 120,
+            height: 120
+          });
         </script>
       </body>
     </html>
