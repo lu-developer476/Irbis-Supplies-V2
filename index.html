@@ -170,16 +170,21 @@
   <!-- ===============================
        FOOTER
   =============================== -->
-  <footer>
-    <p>© 2026 Todos los derechos reservados | Lucas Leonel Montenegro Burgos</p>
-  </footer>
-
+<footer>
+<h6>
+  <span>©</span> <span id="year"></span> Todos los derechos reservados • Built with HTML5, CSS3, JavaScript, TypeScript, CoffeeScript, UX/UI Interface • Deployed on Netlify ®
+</h6>
+</footer>
 
   <!-- ===============================
        SCRIPTS
   =============================== -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  
   <script>
     const swiper = new Swiper(".mySwiper", {
       loop: true,
